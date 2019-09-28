@@ -1,5 +1,7 @@
 {
   "name": "hackMoon",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

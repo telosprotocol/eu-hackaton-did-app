@@ -5,5 +5,41 @@
 </ion-header>
 
 <ion-content>
-
+  <form #form="ngForm" (ngSubmit)="register(form)" method="post">
+    <ion-row>
+      <ion-col [size]="12">
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input ngModel type="email" name="email"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col [size]="12">
+        <ion-item>
+          <ion-label position="floating">Username</ion-label>
+          <ion-input ngModel type="text" name="username"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col [size]="12">
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input ngModel type="password" name="password"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row padding>
+      <ion-col [size]="12">
+        <ion-button type="submit" color="primary">
+          Register
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+  <ion-card no-margin padding-bottom>
+    <div class="row">
+      <div class="col-12">
+        <h3 color="light" text-center>Have a account?</h3>
+        <p [routerLink]="['/login']"  text-center class="link">Login</p>
+      </div>
+    </div>
+  </ion-card>
 </ion-content>
