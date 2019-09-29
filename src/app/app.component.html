@@ -18,6 +18,11 @@
           </ion-menu-toggle>
         </ion-list>
       </ion-content>
+      <ion-col [size]="12">
+        <ion-button (click)="logOut()" type="submit" color="primary">
+          LogOut
+        </ion-button>
+      </ion-col>
     </ion-menu>
     <ion-router-outlet main></ion-router-outlet>
   </ion-split-pane>

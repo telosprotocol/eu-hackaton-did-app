@@ -43,6 +43,7 @@ export class RegisterPage implements OnInit {
                                 console.log('Successfully encrypted credentials.');
                                 console.log('Encrypted credentials: ' + result.token);
                                 this.authService.setSecret(result.token);
+                                this.authService.setEmail(form.value.email);
                                 console.log(this.ascii_to_hexa(form.value.email + form.value.password));
                             //TODO SEND TO REGISTRATION SERVICE
 
