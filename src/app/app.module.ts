@@ -27,6 +27,10 @@ import {WebView} from '@ionic-native/ionic-webview/ngx';
     AppRoutingModule,
     IonicStorageModule.forRoot(),
     HttpClientModule,
+      IonicStorageModule.forRoot({
+          name: 'nvDB',
+          driverOrder: ['indexeddb', 'sqlite', 'websql']
+      })
   ],
   providers: [
     StatusBar,

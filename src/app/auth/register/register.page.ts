@@ -4,6 +4,14 @@ import {Storage} from '@ionic/storage';
 import {AndroidFingerprintAuth} from '@ionic-native/android-fingerprint-auth/ngx';
 import {AuthService} from '../../services/auth.service';
 
+interface KeyModel {
+    account: AccModel;
+}
+interface AccModel {
+    address?: string;
+    privateKey?: string;
+    publicKey?: string;
+}
 @Component({
     selector: 'app-register',
     templateUrl: './register.page.html',
@@ -46,8 +54,9 @@ export class RegisterPage implements OnInit {
                                 this.authService.setEmail(form.value.email);
                                 console.log(this.ascii_to_hexa(form.value.email + form.value.password));
                                 this.authService.regist(this.ascii_to_hexa(form.value.email + form.value.password))
-                                    .subscribe(data => {
-                                    console.log(data, 'reg success');
+                                    .subscribe((data: KeyModel) => {
+                                        this.authService.setKeys(data.account.privateKey, data.account.publicKey);
+                                        console.log(data, 'reg success');
                                 });
                             } else if (result.withBackup) {
                                 console.log('Successfully authenticated with backup password!');

@@ -26,7 +26,7 @@ export class AuthService {
     }
 
     public setToken() {
-        return this.storage.set('token', 123);
+        return this.storage.set('token', true);
     }
 
     public removeTocken() {
@@ -59,6 +59,7 @@ export class AuthService {
                 error => console.error('Error storing item', error)
             );
     }
+
     public getMail() {
         return this.storage.get('mail').then(
             data => data,
@@ -66,11 +67,37 @@ export class AuthService {
         );
     }
 
-    public getListFiles() {
+    public getListFiles(uuid) {
         const headers = new HttpHeaders({
             'Authorization': 'Bearer' + ' ' + 'TODO TOKEN'
         });
-        return this.http.get('http://8e56a69c.ngrok.io/api/files?uuid=6');
+        return this.http.get('http://8e56a69c.ngrok.io/api/files?uuid=' + uuid);
+    }
+
+    public openFiles(id) {
+        return this.http.get('http://8e56a69c.ngrok.io/api/files/' + id);
+    }
+
+    public setKeys(privat, puiblic) {
+        this.storage.set('privateKey', privat)
+            .then(
+                () => {
+                    console.log('Privet key set');
+                },
+                error => console.error('Error storing item', error)
+            );
+        this.storage.set('publicKey', puiblic)
+            .then(
+                () => {
+                    console.log('Public key set');
+                },
+                error => console.error('Error storing item', error)
+            );
+    }
+
+
+    public getUuid() {
+        return this.storage.get('publicKey');
     }
 
 }

@@ -62,10 +62,10 @@ export class LoginPage implements OnInit {
                                     console.log('DATA ENCRYPTED', this.ascii_to_hexa(mail + data.password));
                                     this.authService.login(this.ascii_to_hexa(mail + data.password)).subscribe((data) => {
                                         console.log('login success', data);
-                                    });
-                                    this.authService.setToken().then((token) => {
-                                        console.log('data token set', token);
-                                        this.router.navigate(['/home']);
+                                        this.authService.setToken().then((token) => {
+                                            console.log('data token set', token);
+                                            this.router.navigate(['/home']);
+                                        });
                                     });
                                 });
                             }

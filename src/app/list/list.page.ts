@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import {AlertService} from '../services/alert.service';
-import {WebView} from '@ionic-native/ionic-webview/ngx';
+import {Storage} from '@ionic/storage';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
     selector: 'app-list',
@@ -10,24 +11,38 @@ import {WebView} from '@ionic-native/ionic-webview/ngx';
 })
 export class ListPage implements OnInit {
     private selectedItem: any;
+    private uuid;
+    showImage;
+    private file;
     public list: any = [];
+
     constructor(
         private auth: AuthService,
-        private alertService: AlertService
-    ){}
+        private alertService: AlertService,
+        private authService: AuthService,
+        private storage: Storage,
+        private sanitizer: DomSanitizer
+    ) {
+    }
+
     ngOnInit() {
     }
-
-    // add back when alpha.4 is out
-    // navigate(item) {
-    //   this.router.navigate(['/list', JSON.stringify(item)]);
-    // }
     ionViewWillEnter() {
-      this.auth.getListFiles().subscribe((data) => {
-        console.log(data, 'filelist');
-        this.list = data;
-      });
+        this.storage.get('publicKey').then((key) => {
+            this.uuid = key;
+            this.auth.getListFiles(this.uuid).subscribe((data) => {
+                console.log(data, 'filelist');
+                this.list = data;
+            });
+        });
     }
 
+    openFile(id) {
+        this.authService.openFiles(id).subscribe((data: any) => {
+            console.log(data);
+            this.file = 'data:image/png;base64, ' + data.file;
+            this.showImage = this.sanitizer.bypassSecurityTrustUrl(this.file);
+        });
+    }
 
 }

@@ -11,8 +11,8 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let item of list">
-      <span>{{item?.id}}</span>
+    <ion-item (click)="openFile(item?.id)" *ngFor="let item of list">
+      <span>{{item?.id}} </span>
       {{item?.name}}
       <div class="item-note" slot="end">
         {{item?.fileType}}
@@ -24,4 +24,5 @@
       You navigated here from <b>{{selectedItem.title }}</b>
     </div>
   -->
+  <img *ngIf="showImage" [src]="showImage">
 </ion-content>

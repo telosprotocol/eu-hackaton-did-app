@@ -25,10 +25,17 @@
             </ion-col>
         </ion-card-content>
     </ion-card>
-    <ion-list lines="none">
+    <ion-list text-center lines="none">
         <ion-list-header>
             <ion-label>Resources</ion-label>
         </ion-list-header>
-        <img [src]="domSanitizer.bypassSecurityTrustUrl(uri)">
+        <img style="height: 300px" [src]="domSanitizer.bypassSecurityTrustUrl(uri)">
     </ion-list>
+    <ion-item>
+        <ion-label position="floating">Set file name</ion-label>
+        <ion-input [(ngModel)]="filename"></ion-input>
+    </ion-item>
+    <ion-button *ngIf="uri" (click)="uploadFile()" type="submit" color="primary">
+        Upload data
+    </ion-button>
 </ion-content>
