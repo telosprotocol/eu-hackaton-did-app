@@ -1,39 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../services/auth.service';
+import {AlertService} from '../services/alert.service';
+import {WebView} from '@ionic-native/ionic-webview/ngx';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: 'list.page.html',
-  styleUrls: ['list.page.scss']
+    selector: 'app-list',
+    templateUrl: 'list.page.html',
+    styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit {
-  private selectedItem: any;
-  private icons = [
-    'flask',
-    'wifi',
-    'beer',
-    'football',
-    'basketball',
-    'paper-plane',
-    'american-football',
-    'boat',
-    'bluetooth',
-    'build'
-  ];
-  public items: Array<{ title: string; note: string; icon: string }> = [];
-  constructor() {
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
+    private selectedItem: any;
+    public list: any = [];
+    constructor(
+        private auth: AuthService,
+        private alertService: AlertService
+    ){}
+    ngOnInit() {
+    }
+
+    // add back when alpha.4 is out
+    // navigate(item) {
+    //   this.router.navigate(['/list', JSON.stringify(item)]);
+    // }
+    ionViewWillEnter() {
+      this.auth.getListFiles().subscribe((data) => {
+        console.log(data, 'filelist');
+        this.list = data;
       });
     }
-  }
 
-  ngOnInit() {
-  }
-  // add back when alpha.4 is out
-  // navigate(item) {
-  //   this.router.navigate(['/list', JSON.stringify(item)]);
-  // }
+
 }

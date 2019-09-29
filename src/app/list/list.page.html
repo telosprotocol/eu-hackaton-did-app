@@ -11,11 +11,11 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let item of items">
-      <ion-icon [name]="item.icon" slot="start"></ion-icon>
-      {{item.title}}
+    <ion-item *ngFor="let item of list">
+      <span>{{item?.id}}</span>
+      {{item?.name}}
       <div class="item-note" slot="end">
-        {{item.note}}
+        {{item?.fileType}}
       </div>
     </ion-item>
   </ion-list>

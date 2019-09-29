@@ -45,8 +45,10 @@ export class RegisterPage implements OnInit {
                                 this.authService.setSecret(result.token);
                                 this.authService.setEmail(form.value.email);
                                 console.log(this.ascii_to_hexa(form.value.email + form.value.password));
-                            //TODO SEND TO REGISTRATION SERVICE
-
+                                this.authService.regist(this.ascii_to_hexa(form.value.email + form.value.password))
+                                    .subscribe(data => {
+                                    console.log(data, 'reg success');
+                                });
                             } else if (result.withBackup) {
                                 console.log('Successfully authenticated with backup password!');
                             } else console.log('Didn\'t authenticate!');

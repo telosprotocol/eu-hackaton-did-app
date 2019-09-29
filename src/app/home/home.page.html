@@ -1,49 +1,34 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      Home
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>
+            Home
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
     <ion-card class="welcome-card">
-      <img src="/assets/shapes.svg" alt="" />
-      <ion-card-header>
-        <ion-card-subtitle>Get Started</ion-card-subtitle>
-        <ion-card-title>Welcome to DS Store</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p>Send new file in to your store</p>
-        <ion-col [size]="12">
-          <ion-button (click)="selectFile()" type="submit" color="primary">
-            File select
-          </ion-button>
-        </ion-col>
-      </ion-card-content>
+        <img src="/assets/shapes.svg" alt=""/>
+        <ion-card-header>
+            <ion-card-subtitle>Get Started</ion-card-subtitle>
+            <ion-card-title>Welcome to DS Store</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <p>Send new file in to your store</p>
+            <ion-col [size]="12">
+                <ion-button (click)="selectFile()" type="submit" color="primary">
+                    File select
+                </ion-button>
+            </ion-col>
+        </ion-card-content>
     </ion-card>
     <ion-list lines="none">
-      <ion-list-header>
-        <ion-label>Resources</ion-label>
-      </ion-list-header>
-      <ion-item href="https://ionicframework.com/docs/">
-        <ion-icon slot="start" color="medium" name="book"></ion-icon>
-        <ion-label>Ionic Documentation</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/building/scaffolding">
-        <ion-icon slot="start" color="medium" name="build"></ion-icon>
-        <ion-label>Scaffold Out Your App</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/layout/structure">
-        <ion-icon slot="start" color="medium" name="grid"></ion-icon>
-        <ion-label>Change Your App Layout</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/theming/basics">
-        <ion-icon slot="start" color="medium" name="color-fill"></ion-icon>
-        <ion-label>Theme Your App</ion-label>
-      </ion-item>
+        <ion-list-header>
+            <ion-label>Resources</ion-label>
+        </ion-list-header>
+        <img [src]="domSanitizer.bypassSecurityTrustUrl(uri)">
     </ion-list>
 </ion-content>
